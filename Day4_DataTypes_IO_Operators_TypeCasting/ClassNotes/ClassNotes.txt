@@ -31,3 +31,45 @@ explicit Typecasting : forcefully converting larger datatype to smaller datatype
                     long 1000000000000 = binary  0000000000000000000000001110100011010100101001010001000000000000
                     when converting to int only takes 32 bit which is : 0000000000000000000000001110100
                     binarty 0000000000000000000000001110100 = int 116(This we consider as garbage)
+
+Q. to TA:
+I need help not regarding this problem Code Java 1.8:
+float a=98.2f;
+System.out.println(a);
+ System.out.println(98.2);
+ System.out.println(a==98.2);
+ float b=3.75f;
+ System.out.println(b);
+ System.out.println(3.75);
+ System.out.println(b==3.75);
+ Output:98.2 : understood
+ 98.2 : understood
+ False : understood
+ 3.75 : understood
+ 3.75 : understood
+ True : Not understood
+ Can you help me understand why it is coming as true,
+ as per my understanding 3.75 is by default double value and 3.75f is float this should be false
+ but it is getting as True.
+ I appreciate any help you can provide.
+
+ Answer:
+ The behavior you're observing stems from the specifics of floating-point arithmetic and how Java handles float and double comparisons. Let's break it down step by step.
+
+Why a == 98.2 is false
+
+a is a float with a value of 98.2f.
+98.2 is a double.
+When comparing a to 98.2, Java promotes a to a double. However, the exact binary representation of 98.2f (float) is not the same as 98.2 (double), leading to false.
+Why b == 3.75 is true
+
+b is a float with a value of 3.75f.
+3.75 is a double.
+In this case, the binary representation of 3.75f (float) when promoted to double exactly matches 3.75 (double), leading to true
+In this case:
+
+98.2f (float) != 98.2 (double) due to precision loss in float.
+
+3.75f (float) == 3.75 (double) because it can be exactly represented in both float and double.
+
+This is why b == 3.75 evaluates to true, while a == 98.2 evaluates to false.
